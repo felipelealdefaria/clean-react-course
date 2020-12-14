@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import faker from 'faker'
 import { RemoteAuthentication } from './remote-authentication'
-import { HttpPostClientSpy } from '../../test/mock-http-client'
-import { mockAuthentication } from '../../test/mock-authentication'
+import { HttpPostClientSpy } from '@/data/test/mock-http-client'
+import { mockAuthentication } from '@/data/test/mock-authentication'
 
 type SutTypes = {
   sut: RemoteAuthentication

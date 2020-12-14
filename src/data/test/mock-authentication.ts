@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import faker from 'faker'
-import { AuthenticationParams } from 'domain/usecases/authentication'
+import { AuthenticationParams } from '@/domain/usecases/authentication'
 
 export const mockAuthentication = (): AuthenticationParams => ({
   email: faker.internet.email(),
