@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { HttpResponse } from './http-response'
 
-export type HttpPostParams = {
+export type HttpPostParams<T> = {
   url: string
-  body?: object
+  body?: T
 }
 
-export interface HttpPostClient {
-  post (params: HttpPostParams): Promise<HttpResponse>
+export interface HttpPostClient<T, R> { // T: Type (Body) | R: Response
+  post (params: HttpPostParams<T>): Promise<HttpResponse<R>>
 }
