@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { HttpResponse } from './http-response'
+import { HttpResponse } from '.'
 
 export type HttpPostParams<T> = {
   url: string

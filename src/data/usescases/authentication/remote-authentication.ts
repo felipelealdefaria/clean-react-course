@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { HttpStatusCode } from '@/data/protocols/http/http-response'
-import { HttpPostClient } from '@/data/protocols/http/http-post-client'
+import { HttpStatusCode, HttpPostClient } from '@/data/protocols/http'
 
-import { AccountModel } from '@/domain/models/account-model'
-import { UnexpectedError } from '@/domain/errors/unexpected-error'
-import { InvalidCredentialsError } from '@/domain/errors/invalid-credentials-error'
-import { Authentication, AuthenticationParams } from '@/domain/usecases/authentication'
+import { AccountModel } from '@/domain/models'
+import { Authentication, AuthenticationParams } from '@/domain/usecases'
+import { UnexpectedError, InvalidCredentialsError } from '@/domain/errors'
 export class RemoteAuthentication implements Authentication {
   constructor (
     private readonly url: string,
