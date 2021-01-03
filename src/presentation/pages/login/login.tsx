@@ -1,9 +1,11 @@
 import React from 'react'
-import * as S from './login-styles'
+import * as S from './styles'
+import { SpinnerDots } from '@/presentation/components/loaders'
 // import { Input } from '@/presentation/components/input'
-import { ButtonSubmit } from '@/presentation/components/buttons'
+// import { ButtonSubmit } from '@/presentation/components/buttons'
 
-const Login: React.FC = () => {
+export const Login: React.FC = () => {
+  const state = false
   return (
     <S.Container>
       <S.Header>
@@ -14,13 +16,23 @@ const Login: React.FC = () => {
         <h2>Login</h2>
         {/* <Input type="email" name="email" placeholder="Email" />
         <Input type="password" name="password" placeholder="Password" /> */}
-        <input type="email" name="email" placeholder="Email" />
-        <input type="password" name="password" placeholder="Password" />
-        <ButtonSubmit state={'teste'} text='Sign in'/>
+        <S.WrapperInput>
+          <input type="email" name="email" placeholder="Email" />
+          <span>🔴</span>
+        </S.WrapperInput>
+        <S.WrapperInput>
+          <input type="password" name="password" placeholder="Password" />
+          <span>🔴</span>
+        </S.WrapperInput>
+        {/* <ButtonSubmit state={'teste'} text='Sign in'/> */}
+        <button type='submit'>Sign in</button>
+        <S.Link>Criar Conta</S.Link>
+        <S.WrapperError error={state ? 'true' : 'false'}>
+          <SpinnerDots visible={false} />
+          <span>Error</span>
+        </S.WrapperError>
       </S.Form>
       <S.Footer></S.Footer>
     </S.Container>
   )
 }
-
-export default Login
