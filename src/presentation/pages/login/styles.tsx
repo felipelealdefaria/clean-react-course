@@ -59,33 +59,6 @@ export const Form = styled('form', {
   }
 })
 
-export const WrapperInput = styled('div', {
-  mt: 16,
-  display: 'flex',
-  alignItems: 'center',
-  position: 'relative',
-
-  input: {
-    br: 4,
-    py: 5,
-    px: 10,
-    width: '100%',
-    lineHeight: '40px',
-    border: '1px solid $primary_light',
-
-    '&:focus': {
-      outlineColor: '$primary_light'
-    }
-  },
-
-  span: {
-    fontSize: 10,
-    right: '10px',
-    cursor: 'help',
-    position: 'absolute'
-  }
-})
-
 export const Link = styled('a', {
   mt: 16,
   cursor: 'pointer',
