@@ -22,25 +22,6 @@ export const Container = styled('div', {
   justifyContent: 'space-between'
 })
 
-export const Header = styled('div', {
-  // bg: '$primary',
-  bg: '$bg_light',
-  display: 'flex',
-  alignItems: 'center',
-  flexDirection: 'column',
-  borderTop: '40px solid $primary_dark',
-
-  img: {
-    mt: 40
-  },
-
-  h1: {
-    fontSize: 18,
-    color: '$white',
-    m: '16px 0 40px 0'
-  }
-})
-
 export const Form = styled('form', {
   br: 8,
   p: 40,
@@ -98,7 +79,7 @@ export const WrapperInput = styled('div', {
   },
 
   span: {
-    fontSize: 12,
+    fontSize: 10,
     right: '10px',
     cursor: 'help',
     position: 'absolute'
@@ -140,10 +121,4 @@ export const WrapperError = styled('div', {
       }
     }
   }
-})
-
-export const Footer = styled('div', {
-  height: 48,
-  // bg: '$primary'
-  bg: '$bg_light'
 })

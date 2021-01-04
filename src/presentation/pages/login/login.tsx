@@ -1,18 +1,16 @@
 import React from 'react'
 import * as S from './styles'
-import { Logo } from '@/presentation/assets/images'
 import { SpinnerDots } from '@/presentation/components/loaders'
+import { Footer } from '@/presentation/components/layout/footer'
+import { LoginHeader } from '@/presentation/components/layout/header'
 // import { Input } from '@/presentation/components/input'
 // import { ButtonSubmit } from '@/presentation/components/buttons'
 
 export const Login: React.FC = () => {
-  const state = false
+  const state = true
   return (
     <S.Container>
-      <S.Header>
-        <Logo />
-        <h1>Clean Architecture Course</h1>
-      </S.Header>
+      <LoginHeader />
       <S.Form>
         <h2>Login</h2>
         {/* <Input type="email" name="email" placeholder="Email" />
@@ -29,11 +27,11 @@ export const Login: React.FC = () => {
         <button type='submit'>Sign in</button>
         <S.Link>Criar Conta</S.Link>
         <S.WrapperError error={state ? 'true' : 'false'}>
-          <SpinnerDots visible={false} />
+          <SpinnerDots visible={true} />
           <span>Error</span>
         </S.WrapperError>
       </S.Form>
-      <S.Footer></S.Footer>
+      <Footer />
     </S.Container>
   )
 }
