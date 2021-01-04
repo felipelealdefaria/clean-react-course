@@ -23,7 +23,8 @@ export const Container = styled('div', {
 })
 
 export const Header = styled('div', {
-  bg: '$primary',
+  // bg: '$primary',
+  bg: '$bg_light',
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'column',
@@ -143,5 +144,6 @@ export const WrapperError = styled('div', {
 
 export const Footer = styled('div', {
   height: 48,
-  bg: '$primary'
+  // bg: '$primary'
+  bg: '$bg_light'
 })
