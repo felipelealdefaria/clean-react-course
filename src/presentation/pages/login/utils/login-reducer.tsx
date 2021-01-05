@@ -1,6 +1,6 @@
 export interface FeedbackParams {
   message: string
-  status: string
+  status: ('success' | 'error' | 'loading')
 }
 
 export type Action =

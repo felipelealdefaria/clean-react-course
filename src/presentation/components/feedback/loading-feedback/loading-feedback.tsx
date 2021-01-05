@@ -2,17 +2,17 @@
 import React from 'react'
 import * as S from './styles'
 
+import { FeedbackParams } from '@/presentation/pages/login/utils'
 import { SpinnerDots } from '@/presentation/components/loaders'
 
 type Props = {
-  state: string
-  message: string
+  state: FeedbackParams
   loader: ('spinner-dots')
   loaderColor?: ('blue' | 'default')
 }
 
 export const LoadingFeedback: React.FC<Props> = (props: Props) => {
-  const { loader, state, message, loaderColor } = props
+  const { loader, state, loaderColor } = props
 
   const chooseLoader = (): React.ReactElement => {
     switch (loader) {
@@ -27,17 +27,17 @@ export const LoadingFeedback: React.FC<Props> = (props: Props) => {
     <>
       { state && (
         <S.WrapperFeedback>
-          {state === 'success' && (
+          {state.status === 'success' && (
             <span className="success">
-              {message}
+              {state.message}
             </span>
           )}
-          {state === 'error' && (
+          {state.status === 'error' && (
             <span className="error">
-              {message}
+              {state.message}
             </span>
           )}
-          {state === 'loading' && (
+          {state.status === 'loading' && (
             chooseLoader()
           )}
         </S.WrapperFeedback>

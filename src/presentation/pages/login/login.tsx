@@ -4,9 +4,14 @@ import * as S from './styles'
 import { reducer, initialState } from './utils/login-reducer'
 import { Input, ButtonSubmit, LoadingFeedback, LoginHeader, Footer } from '@/presentation/components'
 
+type UserDataProps = {
+  email: string
+  password: string
+}
+
 export const Login: React.FC = (): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [userData, setUserData] = useState({ email: '', password: '' })
+  const [userData, setUserData] = useState<UserDataProps>()
 
   const onChangeValue = (value: string, name: string): void => {
     setUserData({ ...userData, [name]: value })
@@ -62,10 +67,9 @@ export const Login: React.FC = (): JSX.Element => {
         />
         <S.Link>Criar Conta</S.Link>
         <LoadingFeedback
-          loaderColor={'blue'}
-          state={state.status}
+          state={state}
+          loaderColor={'default'}
           loader='spinner-dots'
-          message={state.message}
         />
       </S.Form>
       <Footer />
