@@ -1,10 +1,10 @@
 import React, { useReducer, useState } from 'react'
 
 import * as S from './styles'
-import { reducer, initialState } from './login-reducer'
+import { reducer, initialState } from './utils/login-reducer'
 import { Input, ButtonSubmit, LoadingFeedback, LoginHeader, Footer } from '@/presentation/components'
 
-export const Login: React.FC = (): any => {
+export const Login: React.FC = (): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [userData, setUserData] = useState({ email: '', password: '' })
 
