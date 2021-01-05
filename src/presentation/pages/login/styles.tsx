@@ -42,20 +42,6 @@ export const Form = styled('form', {
     textAlign: 'center',
     color: '$primary_dark',
     textTransform: 'uppercase'
-  },
-
-  button: {
-    br: 8,
-    mt: 32,
-    fontSize: 16,
-    border: 'none',
-    bg: '$primary',
-    color: '$white',
-    lineHeight: '60px',
-
-    '&:hover': {
-      opacity: 0.9
-    }
   }
 })
 
@@ -70,28 +56,4 @@ export const Link = styled('a', {
     textDecoration: 'underline'
   }
 
-})
-
-export const WrapperError = styled('div', {
-  textAlign: 'center',
-
-  span: {
-    mt: 16,
-    color: '$primary'
-  },
-
-  variants: {
-    error: {
-      true: {
-        '> span': {
-          display: 'block'
-        }
-      },
-      false: {
-        '> span': {
-          display: 'none'
-        }
-      }
-    }
-  }
 })

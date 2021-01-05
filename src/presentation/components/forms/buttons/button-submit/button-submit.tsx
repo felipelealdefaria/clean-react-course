@@ -3,20 +3,24 @@ import React from 'react'
 import * as S from './styles'
 
 type ButtonSubmitProps = {
-  state: any
+  state?: any
   text: string
+  onClick?: any
+  type: ('submit' | 'button' | 'reset')
 }
 
-export const ButtonSubmit: React.FC<ButtonSubmitProps> = ({ state, text }: ButtonSubmitProps) => {
+export const ButtonSubmit: React.FC<ButtonSubmitProps> = (props: ButtonSubmitProps) => {
+  const { state, type, text, onClick } = props
   return (
-    <S.Container>
+    <S.ButtonWrapper>
       <button
-        type='submit'
-        data-test-id="submit"
+        type={type}
+        onClick={onClick}
+        data-test-id="signin-button"
         disabled={state.isFormInvalid}
       >
         {text}
       </button>
-    </S.Container>
+    </S.ButtonWrapper>
   )
 }
