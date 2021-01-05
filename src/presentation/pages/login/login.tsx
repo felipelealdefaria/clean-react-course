@@ -62,9 +62,10 @@ export const Login: React.FC = (): any => {
         />
         <S.Link>Criar Conta</S.Link>
         <LoadingFeedback
+          loaderColor={'blue'}
           state={state.status}
-          message={state.message}
           loader='spinner-dots'
+          message={state.message}
         />
       </S.Form>
       <Footer />

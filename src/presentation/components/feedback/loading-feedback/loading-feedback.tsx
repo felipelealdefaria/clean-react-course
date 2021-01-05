@@ -8,17 +8,18 @@ type Props = {
   state: string
   message: string
   loader: ('spinner-dots')
+  loaderColor?: ('blue' | 'default')
 }
 
 export const LoadingFeedback: React.FC<Props> = (props: Props) => {
-  const { loader, state, message } = props
+  const { loader, state, message, loaderColor } = props
 
   const chooseLoader = (): React.ReactElement => {
     switch (loader) {
       case 'spinner-dots':
-        return <SpinnerDots visible={true} />
+        return <SpinnerDots color={loaderColor} visible={true} />
       default:
-        return <SpinnerDots visible={true} />
+        return <SpinnerDots color={loaderColor} visible={true} />
     }
   }
 
@@ -27,10 +28,14 @@ export const LoadingFeedback: React.FC<Props> = (props: Props) => {
       { state && (
         <S.WrapperFeedback>
           {state === 'success' && (
-            <span>{message}</span>
+            <span className="success">
+              {message}
+            </span>
           )}
           {state === 'error' && (
-            <span>{message}</span>
+            <span className="error">
+              {message}
+            </span>
           )}
           {state === 'loading' && (
             chooseLoader()
