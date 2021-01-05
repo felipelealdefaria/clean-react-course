@@ -26,7 +26,7 @@ export const LoadingFeedback: React.FC<Props> = (props: Props) => {
   return (
     <>
       { state && (
-        <S.WrapperFeedback>
+        <S.WrapperFeedback data-testid='error-wrap'>
           {state.status === 'success' && (
             <span className="success">
               {state.message}
