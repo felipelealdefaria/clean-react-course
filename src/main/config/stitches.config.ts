@@ -10,7 +10,9 @@ export const { styled, css } = createStyled({
 
       $primary: '#880e4f',
       $primary_dark: '#560027',
-      $primary_light: '#bc477b'
+      $primary_light: '#bc477b',
+
+      $disabled: '#cccccc'
     }
   },
   breakpoints: {

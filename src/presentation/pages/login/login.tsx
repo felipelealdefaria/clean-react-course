@@ -11,7 +11,8 @@ type UserDataProps = {
 
 export const Login: React.FC = (): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [userData, setUserData] = useState<UserDataProps>()
+  const [disableButton] = useState<boolean>(true)
+  const [userData, setUserData] = useState<UserDataProps>({ email: '', password: '' })
 
   const onChangeValue = (value: string, name: string): void => {
     setUserData({ ...userData, [name]: value })
@@ -63,7 +64,7 @@ export const Login: React.FC = (): JSX.Element => {
           type='button'
           text="Sign in"
           onClick={handleSubmit}
-          state={{ isFormInvalid: false }}
+          disabled={disableButton}
         />
         <S.Link>Criar Conta</S.Link>
         <LoadingFeedback

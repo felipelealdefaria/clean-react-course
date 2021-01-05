@@ -15,6 +15,15 @@ export const ButtonWrapper = styled('div', {
 
     '&:hover': {
       opacity: 0.9
+    },
+
+    '&:disabled': {
+      bg: '$disabled',
+      color: '#f9f9f9',
+
+      '&:hover': {
+        opacity: 1
+      }
     }
   }
 })
