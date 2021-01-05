@@ -1,10 +1,10 @@
 import { styled } from '@/main/config/stitches.config'
 
 export const WrapperFeedback = styled('div', {
+  mt: 16,
   textAlign: 'center',
 
   span: {
-    mt: 16,
     color: '$primary'
   },
 

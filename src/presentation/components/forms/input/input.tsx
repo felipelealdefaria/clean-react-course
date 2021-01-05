@@ -1,21 +1,22 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import * as S from './styles'
 
-type InputProps = {
-  state?: any
-  name: string
-  type: string
-  onChange: any
-  setState?: any
-  required?: any
-  placeholder: string
-}
+type Props =
+  React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement>
 
-export const Input: React.FC<InputProps> = ({ state, setState, ...props }: InputProps) => {
+export const Input: React.FC<Props> = (props: Props) => {
+  const { type, name, required, placeholder, onChange } = props
+
   return (
     <S.WrapperInput>
-      <input onChange={props.onChange} type="email" name="email" placeholder="Email" required={false} />
+      <input
+        type={type}
+        name={name}
+        onChange={onChange}
+        required={required}
+        placeholder={placeholder}
+      />
       <span>🔴</span>
     </S.WrapperInput>
   )

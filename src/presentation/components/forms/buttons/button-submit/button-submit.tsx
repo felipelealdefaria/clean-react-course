@@ -1,15 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import * as S from './styles'
 
-type ButtonSubmitProps = {
-  state?: any
-  text: string
-  onClick?: any
-  type: ('submit' | 'button' | 'reset')
-}
+type Props =
+  React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement> & {
+    state?: any
+    text: string
+  }
 
-export const ButtonSubmit: React.FC<ButtonSubmitProps> = (props: ButtonSubmitProps) => {
+export const ButtonSubmit: React.FC<Props> = (props: Props) => {
   const { state, type, text, onClick } = props
   return (
     <S.ButtonWrapper>
