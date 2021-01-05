@@ -1,19 +1,4 @@
-import { styled, css } from '@/main/config/stitches.config'
-
-export default css.global({
-  '*': {
-    p: 0,
-    m: 0
-  },
-
-  body: {
-    m: 0,
-    p: 0,
-    bg: '$white',
-    boxSizing: 'border-box',
-    fontFamily: 'Roboto, sans-serif'
-  }
-})
+import { styled } from '@/main/config/stitches.config'
 
 export const Container = styled('div', {
   height: '100vh',
