@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from 'react'
 
 import * as S from './styles'
+import { isValid } from '@/validation/login-validation/yup'
 import { reducer, initialState } from './utils/login-reducer'
 import { Input, ButtonSubmit, LoadingFeedback, LoginHeader, Footer } from '@/presentation/components'
 
@@ -18,21 +19,18 @@ export const Login: React.FC = (): JSX.Element => {
     setUserData({ ...userData, [name]: value })
   }
 
-  const handleSubmit = (): void => {
+  const handleSubmit = async (): Promise<any> => {
     const { email, password } = userData
     dispatch({ type: 'loading', payload: '...' })
 
-    setTimeout(() => {
-      if (email && password) {
-        dispatch({ type: 'success', payload: 'Sucesso!' })
-        return console.log(userData)
-      }
+    const res = await isValid({ email: email, password: password })
 
-      return dispatch({
-        type: 'error',
-        payload: 'Todos os campos precisam estar preenchidos'
-      })
-    }, 2000)
+    return dispatch({
+      type: res?.valid ? 'success' : 'error',
+      payload: res?.valid
+        ? 'We found your account! In the next few seconds, you’ll be taken to the app'
+        : `${res?.message}`
+    })
   }
 
   return (

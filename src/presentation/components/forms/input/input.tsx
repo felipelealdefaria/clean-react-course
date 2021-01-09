@@ -17,7 +17,7 @@ export const Input: React.FC<Props> = (props: Props) => {
         required={required}
         placeholder={placeholder}
       />
-      <span>🔴</span>
+      <span data-testid={`${name}-status`}>🔴</span>
     </S.WrapperInput>
   )
 }
