@@ -11,5 +11,13 @@ describe('Login Component ', () => {
 
     const submitButton = getByTestId('submit-button') as HTMLButtonElement
     expect(submitButton.disabled).toBe(true)
+
+    const emailStatus = getByTestId('email-status')
+    expect(emailStatus.textContent).toBe('🔴')
+    // expect(emailStatus.title).toBe('Required field')
+
+    const passwordStatus = getByTestId('password-status')
+    expect(passwordStatus.textContent).toBe('🔴')
+    // expect(passwordStatus.title).toBe('Required field')
   })
 })
