@@ -24,5 +24,13 @@ export const WrapperInput = styled('div', {
     right: '10px',
     cursor: 'help',
     position: 'absolute'
+  },
+
+  'input.valid': {
+    border: '1px solid green'
+  },
+
+  'input.invalid': {
+    border: '1px solid red'
   }
 })
