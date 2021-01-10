@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
-import { render, RenderResult } from '@testing-library/react'
+import { cleanup, render, RenderResult } from '@testing-library/react'
 
 import { Login } from '../'
 
@@ -17,6 +17,8 @@ const makeSut = (): SutTypes => {
 
 describe('Login Component ', () => {
   test('Should start with initial state', () => {
+    afterEach(cleanup)
+
     const { sut } = makeSut()
     const errorWrap = sut.getByTestId('error-wrap')
     expect(errorWrap.childElementCount).toBe(0)
@@ -25,11 +27,17 @@ describe('Login Component ', () => {
     expect(submitButton.disabled).toBe(true)
 
     const emailStatus = sut.getByTestId('email-status')
-    expect(emailStatus.textContent).toBe('🔴')
+    expect(emailStatus.textContent).toBe('⚪️')
     // expect(emailStatus.title).toBe('Required field')
 
     const passwordStatus = sut.getByTestId('password-status')
-    expect(passwordStatus.textContent).toBe('🔴')
+    expect(passwordStatus.textContent).toBe('⚪️')
     // expect(passwordStatus.title).toBe('Required field')
   })
+
+  // test('Should call Validation with correct values', () => {
+  //   afterEach(cleanup)
+
+  //   const { sut } = makeSut()
+  // })
 })
