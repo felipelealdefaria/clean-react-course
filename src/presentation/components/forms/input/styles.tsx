@@ -1,7 +1,7 @@
 import { styled } from '@/main/config/stitches.config'
 
 export const WrapperInput = styled('div', {
-  mt: 16,
+  mt: 22,
   display: 'flex',
   alignItems: 'center',
   position: 'relative',
@@ -33,4 +33,12 @@ export const WrapperInput = styled('div', {
   'input.invalid': {
     border: '1px solid red'
   }
+})
+
+export const ErrorField = styled('span', {
+  left: '2px',
+  color: 'red',
+  fontSize: 10,
+  bottom: '-15px',
+  position: 'absolute'
 })
