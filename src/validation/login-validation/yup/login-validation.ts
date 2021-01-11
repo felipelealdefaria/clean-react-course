@@ -31,6 +31,8 @@ export const validateField = async (path: string, obj: Object): Promise<Validati
       return { valid: true, field: path }
     })
     .catch((err) => {
-      return { valid: false, field: path, message: err }
+      const formatError = err.toString().split('at createError').shift()
+      const error = formatError.split(':').pop()
+      return { valid: false, field: path, message: error }
     })
 }
