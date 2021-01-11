@@ -6,23 +6,26 @@ import { ValidationProps } from '@/validation/login-validation/yup'
 
 type StatusResponse = {
   status: string
+  message?: string
   span: JSX.Element
 }
 
 type Props = {
-  validate: ValidationProps
+  validate: ValidationProps[]
 } & React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
 export const Input: React.FC<Props> = (props: Props) => {
   const { type, name, placeholder, validate, onChange, onBlur } = props
 
   const handleStatus = (): StatusResponse => {
-    if (validate.valid === null) return { status: '', span: <>⚪️</> }
-    if (validate.valid && validate.field === name) return { status: 'valid', span: <>🟢</> }
-    return { status: 'invalid', span: <>🔴</> }
+    const statusField = validate.find(el => el.field === name)
+
+    if (!statusField || statusField.valid === null) return { status: '', span: <>⚪️</> }
+    if (statusField.valid && statusField.field === name) return { status: 'valid', span: <>🟢</> }
+    return { status: 'invalid', span: <>🔴</>, message: statusField.message }
   }
 
-  const { status, span } = handleStatus()
+  const { status, span, message } = handleStatus()
 
   return (
     <S.WrapperInput>
@@ -35,9 +38,7 @@ export const Input: React.FC<Props> = (props: Props) => {
         placeholder={placeholder}
       />
       <span data-testid={`${name}-status`}>{span}</span>
-      <div>
-        {/* {validate?.message || ''} */}
-      </div>
+      <S.ErrorField>{message || ''}</S.ErrorField>
     </S.WrapperInput>
   )
 }
