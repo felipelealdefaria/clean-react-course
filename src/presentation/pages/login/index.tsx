@@ -16,7 +16,7 @@ export const Login: React.FC = (): JSX.Element => {
 
   const [disableButton, setDisableButton] = useState<boolean>(true)
   const [userData, setUserData] = useState<UserDataProps>({ email: '', password: '' })
-  const [statusField, setStatusField] = useState<ValidationProps>({ valid: null, field: null, message: null })
+  const [statusField, setStatusField] = useState<ValidationProps[]>([{ valid: null, field: null, message: null }])
 
   const onChangeValue = (value: string, name: string): void => {
     setUserData({ ...userData, [name]: value })
@@ -24,8 +24,14 @@ export const Login: React.FC = (): JSX.Element => {
 
   const onBlurValidation = async (name: string): Promise<void> => {
     const resField = await validateField(name, userData)
-    setStatusField(resField)
-
+    if (statusField.find(el => el.field === resField.field)) {
+      const findFieldIndex = statusField.findIndex(el => el.field === resField.field)
+      const newArr = [...statusField]
+      newArr[findFieldIndex] = resField
+      setStatusField(newArr)
+    } else {
+      setStatusField([...statusField, resField])
+    }
     const resForm = await validateForm(userData)
     setDisableButton(!resForm.valid)
   }
