@@ -15,6 +15,7 @@ const schema = yup.object().shape({
     .min(8, 'Password is too short - should be 8 chars minimum.')
 })
 
+// validate all the form
 export const validateForm = async (obj: Object): Promise<ValidationProps> => {
   return await schema.validate(obj)
     .then(() => {
@@ -25,6 +26,7 @@ export const validateForm = async (obj: Object): Promise<ValidationProps> => {
     })
 }
 
+// validate single element field
 export const validateField = async (path: string, obj: Object): Promise<ValidationProps> => {
   return await schema.validateAt(path, obj)
     .then(() => {
@@ -35,4 +37,16 @@ export const validateField = async (path: string, obj: Object): Promise<Validati
       const error = formatError.split(':').pop()
       return { valid: false, field: path, message: error }
     })
+}
+
+// create [{}] for style validation - one by one
+export const mountArrayFieldValidate = (statusField: ValidationProps[], resField: ValidationProps): ValidationProps[] => {
+  if (statusField.find(el => el.field === resField.field)) {
+    const findFieldIndex = statusField.findIndex(el => el.field === resField.field)
+    const newArr = [...statusField]
+    newArr[findFieldIndex] = resField
+    return newArr
+  } else {
+    return [...statusField, resField]
+  }
 }
