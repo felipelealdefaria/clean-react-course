@@ -4,7 +4,7 @@ import React, { useReducer, useState } from 'react'
 import * as S from './styles'
 import { reducer, initialState } from './utils/login-reducer'
 import { Input, ButtonSubmit, LoadingFeedback, LoginHeader, Footer } from '@/presentation/components'
-import { validateForm, validateField, mountArrayFieldValidate, ValidationProps } from '@/validation/login-validation/yup'
+import { validateForm, validateField, mountArrayFieldValidate, ValidationProps } from '@/validation/yup-validation'
 
 type UserDataProps = {
   email: string

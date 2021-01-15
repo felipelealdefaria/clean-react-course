@@ -2,7 +2,7 @@
 import React from 'react'
 import * as S from './styles'
 
-import { ValidationProps } from '@/validation/login-validation/yup'
+import { ValidationProps } from '@/validation/yup-validation'
 
 type StatusResponse = {
   status: string
