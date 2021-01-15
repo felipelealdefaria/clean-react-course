@@ -3,8 +3,8 @@ import React, { useReducer, useState } from 'react'
 
 import * as S from './styles'
 import { reducer, initialState } from './utils/login-reducer'
-import { validateForm, validateField, ValidationProps } from '@/validation/login-validation/yup'
 import { Input, ButtonSubmit, LoadingFeedback, LoginHeader, Footer } from '@/presentation/components'
+import { validateForm, validateField, mountArrayFieldValidate, ValidationProps } from '@/validation/login-validation/yup'
 
 type UserDataProps = {
   email: string
@@ -24,14 +24,8 @@ export const Login: React.FC = (): JSX.Element => {
 
   const onBlurValidation = async (name: string): Promise<void> => {
     const resField = await validateField(name, userData)
-    if (statusField.find(el => el.field === resField.field)) {
-      const findFieldIndex = statusField.findIndex(el => el.field === resField.field)
-      const newArr = [...statusField]
-      newArr[findFieldIndex] = resField
-      setStatusField(newArr)
-    } else {
-      setStatusField([...statusField, resField])
-    }
+    setStatusField(() => mountArrayFieldValidate(statusField, resField))
+
     const resForm = await validateForm(userData)
     setDisableButton(!resForm.valid)
   }
