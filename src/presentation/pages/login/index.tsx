@@ -2,9 +2,9 @@
 import React, { useReducer, useState } from 'react'
 
 import * as S from './styles'
+import { validateForm } from '@/validation/yup-validation'
 import { reducer, initialState } from './utils/login-reducer'
 import { Input, ButtonSubmit, LoadingFeedback, LoginHeader, Footer } from '@/presentation/components'
-import { validateForm, validateField, mountArrayFieldValidate, ValidationProps } from '@/validation/yup-validation'
 
 type UserDataProps = {
   email: string
@@ -16,16 +16,18 @@ export const Login: React.FC = (): JSX.Element => {
 
   const [disableButton, setDisableButton] = useState<boolean>(true)
   const [userData, setUserData] = useState<UserDataProps>({ email: '', password: '' })
-  const [statusField, setStatusField] = useState<ValidationProps[]>([{ valid: null, field: null, message: null }])
+
+  React.useEffect(() => {
+    return () => {
+      setDisableButton(true)
+    }
+  }, [])
 
   const onChangeValue = (value: string, name: string): void => {
     setUserData({ ...userData, [name]: value })
   }
 
-  const onBlurValidation = async (name: string): Promise<void> => {
-    const resField = await validateField(name, userData)
-    setStatusField(() => mountArrayFieldValidate(statusField, resField))
-
+  const onBlurValidation = async (): Promise<void> => {
     const resForm = await validateForm(userData)
     setDisableButton(!resForm.valid)
   }
@@ -50,8 +52,8 @@ export const Login: React.FC = (): JSX.Element => {
           name='email'
           type='email'
           placeholder='E-mail'
-          validate={statusField}
-          onBlur={async () => onBlurValidation('email')}
+          value={userData.email}
+          onBlur={onBlurValidation}
           onChange={(e) => onChangeValue(e.target.value, 'email')}
         />
         <Input
@@ -59,8 +61,8 @@ export const Login: React.FC = (): JSX.Element => {
           name='password'
           type='password'
           placeholder='Password'
-          validate={statusField}
-          onBlur={async () => onBlurValidation('password')}
+          value={userData.password}
+          onBlur={onBlurValidation}
           onChange={(e) => onChangeValue(e.target.value, 'password')}
         />
         <ButtonSubmit

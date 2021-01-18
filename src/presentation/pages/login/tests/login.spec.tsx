@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
-import { cleanup, render, RenderResult } from '@testing-library/react'
+import { cleanup, render, fireEvent, RenderResult } from '@testing-library/react'
 
 import { Login } from '../'
+import { act } from 'react-dom/test-utils'
 
 type SutTypes = {
   sut: RenderResult
@@ -10,34 +11,44 @@ type SutTypes = {
 
 const makeSut = (): SutTypes => {
   const sut = render(<Login />)
-  return {
-    sut
-  }
+  // act(() => { sut = render(<Login />) })
+  return { sut }
 }
 
 describe('Login Component ', () => {
   test('Should start with initial state', () => {
     afterEach(cleanup)
-
     const { sut } = makeSut()
-    const errorWrap = sut.getByTestId('error-wrap')
-    expect(errorWrap.childElementCount).toBe(0)
-
-    const submitButton = sut.getByTestId('submit-button') as HTMLButtonElement
-    expect(submitButton.disabled).toBe(true)
 
     const emailStatus = sut.getByTestId('email-status')
     expect(emailStatus.textContent).toBe('⚪️')
-    // expect(emailStatus.title).toBe('Required field')
+
+    const emailError = sut.getByTestId('email-error')
+    expect(emailError.textContent).toBe('')
 
     const passwordStatus = sut.getByTestId('password-status')
     expect(passwordStatus.textContent).toBe('⚪️')
-    // expect(passwordStatus.title).toBe('Required field')
+
+    const passwordError = sut.getByTestId('password-error')
+    expect(passwordError.textContent).toBe('')
+
+    const submitButton = sut.getByTestId('submit-button') as HTMLButtonElement
+    expect(submitButton.disabled).toBe(true)
   })
 
-  // test('Should call Validation with correct values', () => {
-  //   afterEach(cleanup)
+  test('Should call Validation with incorrect values', () => {
+    const { sut } = makeSut()
 
-  //   const { sut } = makeSut()
-  // })
+    const emailInput = sut.getByTestId('email-input') as HTMLInputElement
+    const emailStatus = sut.getByTestId('email-status')
+    act(() => {
+      fireEvent.change(emailInput, { target: { value: 'testeteste.com' } })
+      fireEvent.blur(emailInput)
+    })
+    expect(emailInput.value).toBe('testeteste.com')
+    // expect(emailStatus.textContent).toBe('🔴')
+
+    const submitButton = sut.getByTestId('submit-button') as HTMLButtonElement
+    expect(submitButton.disabled).toBe(true)
+  })
 })
