@@ -3,15 +3,15 @@ import React, { useReducer, useState } from 'react'
 
 import * as S from './styles'
 import { validateForm } from '@/validation/yup-validation'
-import { reducer, initialState } from './utils/login-reducer'
-import { Input, ButtonSubmit, LoadingFeedback, LoginHeader, Footer } from '@/presentation/components'
+import { reducer, initialState } from './utils/signin-reducer'
+import { Input, Button, LoadingFeedback } from '@/presentation/components'
 
 type UserDataProps = {
   email: string
   password: string
 }
 
-export const Login: React.FC = (): JSX.Element => {
+export const SignIn: React.FC = (): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const [disableButton, setDisableButton] = useState<boolean>(true)
@@ -43,42 +43,45 @@ export const Login: React.FC = (): JSX.Element => {
   }
 
   return (
-    <S.Container>
-      <LoginHeader />
-      <S.Form>
-        <h2>Login</h2>
-        <Input
-          required
-          name='email'
-          type='email'
-          placeholder='E-mail'
-          value={userData.email}
-          onBlur={onBlurValidation}
-          onChange={(e) => onChangeValue(e.target.value, 'email')}
-        />
-        <Input
-          required
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={userData.password}
-          onBlur={onBlurValidation}
-          onChange={(e) => onChangeValue(e.target.value, 'password')}
-        />
-        <ButtonSubmit
-          type='button'
-          text="Sign in"
+    <S.Form>
+      <Input
+        required
+        name='email'
+        type='email'
+        placeholder='E-mail'
+        value={userData.email}
+        onBlur={onBlurValidation}
+        onChange={(e) => onChangeValue(e.target.value, 'email')}
+      />
+      <Input
+        required
+        name='password'
+        type='password'
+        placeholder='Password'
+        value={userData.password}
+        onBlur={onBlurValidation}
+        onChange={(e) => onChangeValue(e.target.value, 'password')}
+      />
+
+      {/* <S.Link>Forget your password?</S.Link> */}
+
+      <div
+        style={{
+          marginTop: '42px'
+        }}
+      >
+        <Button
+          type='submit'
+          text="SIGN IN"
           onClick={handleSubmit}
           disabled={disableButton}
         />
-        <S.Link>Criar Conta</S.Link>
         <LoadingFeedback
           state={state}
           loaderColor={'default'}
           loader='spinner-dots'
         />
-      </S.Form>
-      <Footer />
-    </S.Container>
+      </div>
+    </S.Form>
   )
 }

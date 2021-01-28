@@ -2,7 +2,7 @@
 import React from 'react'
 import { cleanup, render, fireEvent, RenderResult } from '@testing-library/react'
 
-import { Login } from '../'
+import { SignIn } from '..'
 import { act } from 'react-dom/test-utils'
 
 type SutTypes = {
@@ -10,12 +10,12 @@ type SutTypes = {
 }
 
 const makeSut = (): SutTypes => {
-  const sut = render(<Login />)
-  // act(() => { sut = render(<Login />) })
+  const sut = render(<SignIn />)
+  // act(() => { sut = render(<SignIn />) })
   return { sut }
 }
 
-describe('Login Component ', () => {
+describe('SignIn Component ', () => {
   test('Should start with initial state', () => {
     afterEach(cleanup)
     const { sut } = makeSut()
@@ -32,7 +32,7 @@ describe('Login Component ', () => {
     const passwordError = sut.getByTestId('password-error')
     expect(passwordError.textContent).toBe('')
 
-    const submitButton = sut.getByTestId('submit-button') as HTMLButtonElement
+    const submitButton = sut.getByTestId('button-classic') as HTMLButtonElement
     expect(submitButton.disabled).toBe(true)
   })
 
@@ -48,7 +48,7 @@ describe('Login Component ', () => {
     expect(emailInput.value).toBe('testeteste.com')
     // expect(emailStatus.textContent).toBe('🔴')
 
-    const submitButton = sut.getByTestId('submit-button') as HTMLButtonElement
+    const submitButton = sut.getByTestId('button-classic') as HTMLButtonElement
     expect(submitButton.disabled).toBe(true)
   })
 })
