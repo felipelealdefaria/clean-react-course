@@ -2,7 +2,7 @@
 import React from 'react'
 import * as S from './styles'
 
-import { FeedbackParams } from '@/presentation/pages/login/utils'
+import { FeedbackParams } from '@/presentation/pages/sign-in/utils'
 import { SpinnerDots } from '@/presentation/components/loaders'
 
 type Props = {
