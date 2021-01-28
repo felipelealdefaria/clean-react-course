@@ -1,1 +1,2 @@
-export * from './button-submit'
+export * from './button-classic'
+export * from './button-outline'
