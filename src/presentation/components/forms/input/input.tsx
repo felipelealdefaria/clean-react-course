@@ -29,7 +29,11 @@ export const Input: React.FC<Props> = (props: Props) => {
 
   return (
     <S.WrapperInput>
+      <label htmlFor={name}>
+        {placeholder}
+      </label>
       <input
+        id={name}
         type={type}
         name={name}
         value={value}
@@ -37,7 +41,7 @@ export const Input: React.FC<Props> = (props: Props) => {
         onChange={onChange}
         // onBlur={async (e) => {
         //   onBlur && onBlur(e)
-        // await handleStatus()
+        //   await handleStatus()
         // }}
         placeholder={placeholder}
         data-testid={`${name}-input`}
