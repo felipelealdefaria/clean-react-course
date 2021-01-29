@@ -1,26 +1,33 @@
 import { styled } from '@/main/config/stitches.config'
 
 export const WrapperInput = styled('div', {
-  mt: 22,
-  display: 'flex',
-  alignItems: 'center',
+  mt: 25,
+  width: '100%',
+  display: 'grid',
+  textAlign: 'left',
   position: 'relative',
+
+  label: {
+    mb: '5px',
+    fontSize: '12px',
+    color: '#9177FA'
+  },
 
   input: {
     br: 4,
-    py: 5,
-    px: 10,
-    width: '100%',
+    bg: 'transparent',
     lineHeight: '40px',
-    border: '1px solid $primary_light',
+    padding: '5px 10px',
+    border: '1px solid #9177FA',
 
     '&:focus': {
-      outlineColor: '$primary_light'
+      outlineColor: '#9177FA'
     }
   },
 
   span: {
-    fontSize: 10,
+    top: '40px',
+    fontSize: 8,
     right: '10px',
     cursor: 'help',
     position: 'absolute'
@@ -35,10 +42,11 @@ export const WrapperInput = styled('div', {
   }
 })
 
-export const ErrorField = styled('span', {
+export const ErrorField = styled('p', {
+  margin: 0,
   left: '2px',
   color: 'red',
-  fontSize: 10,
-  bottom: '-15px',
+  fontSize: 12,
+  bottom: '-18px',
   position: 'absolute'
 })
